@@ -4,8 +4,9 @@
  */
 import javax.swing.JOptionPane;
 public class CCMeth {
-    public String[] FCadastro(String Friend[]){
     CadAmigos[] cAmigos = new CadAmigos[3];
+    public String[] FCadastro(String Friend[]){
+    
         int i;
         
         for(i = 0; i < 1; i++){
@@ -20,4 +21,14 @@ public class CCMeth {
         }
         return Friend;
     }
+    
+    
+    public String[] FShowCadastro(String F2[]){
+        int x;
+        for(x = 0; x < 1; x++){
+            JOptionPane.showMessageDialog(null, cAmigos[x].FriendName+"\n"+cAmigos[x].FriendMom+"\n"+cAmigos[x].PhoneNumber+"\n"+cAmigos[x].EscolaPredio);
+        }
+        return F2;
+    }
+    
 }

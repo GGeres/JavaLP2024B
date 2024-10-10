@@ -17,7 +17,5 @@ class CadAmigos {
         PFMom = FriendMom;
         PPNumber = PhoneNumber;
         PEPredio = EscolaPredio;
-    }
-            
-            
+    }        
 }

@@ -14,7 +14,7 @@ public class ClubeCulturalMain {
         String emprestimo[] = new String[4];
         int opc = 0;
         while (opc != 9) {            
-            opc = Integer.parseInt(JOptionPane.showInputDialog("1 - Novo Empréstimo  \n2 - Cadastrar HQs \n3 - Cadastro de Amiguinhos  \n9 - Fim"));
+            opc = Integer.parseInt(JOptionPane.showInputDialog("1 - Novo Empréstimo  \n2 - Cadastrar HQs \n3 - Cadastro de Amiguinhos \n4 - Amiguinhos  \n9 - Fim"));
             switch (opc) {
                 case 1:
                     JOptionPane.showMessageDialog(null, "Novo Empréstimo");
@@ -27,6 +27,10 @@ public class ClubeCulturalMain {
                     //JOptionPane.showMessageDialog(null, "Novo Cadastro");
                     emprestimo = C.FCadastro(emprestimo);
                     break;
+                case 4:
+                    //JOptionPane.showMessageDialog(null, "Amiguinhos");
+                    C.FShowCadastro(emprestimo);
+                    break;                    
                 case 9:
                     JOptionPane.showMessageDialog(null,"Encerrar Programa");
                     System.exit(0);
