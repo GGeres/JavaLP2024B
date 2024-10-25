@@ -84,6 +84,7 @@ public class Votacao2024 {
     
     //Procedimentos para a Opção 4 do Menu Principal
     //4.1 - Eleitores por Seção
+    int somaSecao[] = new int[200];
     public void PEleitoresSecao(Votacao [] vot) throws IOException{
         int i,j;
         String fileName = "ArquivoVotos.txt";
@@ -92,7 +93,7 @@ public class Votacao2024 {
             vot[i].NumeroSecao = Integer.parseInt(read.readLine());
             vot[i].NumeroCandidato = Integer.parseInt(read.readLine());
         }
-        int somaSecao[] = new int[200];
+        
         for(i = 0; i < 199; i++){
             for(j = (i+1); j < 200; j++){
                 if(vot[i].NumeroSecao == vot[j].NumeroSecao){
@@ -121,17 +122,17 @@ public class Votacao2024 {
         switch (optBigLow){
             case 1:
                 for(i = 0; i < 200; i++){
-                    if(vot[i].NumeroSecao > Big){
-                        Big = vot[i].NumeroSecao;
+                    if(somaSecao[i] > Big){
+                        Big = somaSecao[i];
                         aux[0] = vot[i];
-                    }
-                    JOptionPane.showMessageDialog(null,"Seção "+Integer.toString(aux[0].NumeroSecao));        
-                    break;
+                    } 
                 }
+                JOptionPane.showMessageDialog(null,"Seção "+Integer.toString(aux[0].NumeroSecao)); 
+                break;
             case 2:
                 for(i = 0; i < 200; i++){
-                    if(vot[i].NumeroSecao < Low){
-                        Low = vot[i].NumeroSecao;
+                    if(somaSecao[i] < Low){
+                        Low = somaSecao[i];
                         aux[0] = vot[i];
                     }
                 }
@@ -139,6 +140,8 @@ public class Votacao2024 {
                 break;
         }               
     }
+    //4.3 - Quantidade de votos por candidato
+   
     
     
 }
