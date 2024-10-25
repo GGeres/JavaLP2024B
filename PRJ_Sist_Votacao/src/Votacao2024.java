@@ -5,6 +5,9 @@ import java.util.Random;
 //Classe de Métodos
 
 public class Votacao2024 {
+    
+    //Funções do Menu Principal
+    //1 - Carregar Seção/Número Eleitor
     public Votacao [ ] CadastroVotacao(Votacao[] vot) throws IOException{
         int x;
         //String fileName = "ArquivoVotos.txt";
@@ -38,6 +41,7 @@ public class Votacao2024 {
         return vot;   
     }
     
+    //2 - Classificar por Seção
     public Votacao [] ClassificaVot(Votacao []vot) throws IOException{
         int x, y;
         //String fileName = "ArquivoVotos.txt";
@@ -62,6 +66,7 @@ public class Votacao2024 {
         return vot;
     }
     
+    //3 - Gravar Registros
     public Votacao[] GravaVot(Votacao [] vot) throws IOException{
         String fileName = "ArquivoVotos.txt";
         BufferedWriter save = new BufferedWriter(new FileWriter(fileName));
@@ -76,6 +81,9 @@ public class Votacao2024 {
         return vot;
     }
     
+    
+    //Procedimentos para a Opção 4 do Menu Principal
+    //4.1 Eleitores por Seção
     public void PEleitoresSecao(Votacao [] vot) throws IOException{
         int i,j;
         String fileName = "ArquivoVotos.txt";
