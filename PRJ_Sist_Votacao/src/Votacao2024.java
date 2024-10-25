@@ -118,7 +118,7 @@ public class Votacao2024 {
         int optBigLow = Integer.parseInt(JOptionPane.showInputDialog("1 - Seção com mais Votos "
                                                                     + "\n2 - Seção com menos votos"));
         int Big = 0;
-        int Low = 10^100;
+        int Low = 10^1000;
         switch (optBigLow){
             case 1:
                 for(i = 0; i < 200; i++){
