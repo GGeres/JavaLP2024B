@@ -106,6 +106,7 @@ public class Votacao2024 {
         }
     }
     //4.2 - Seção com Maior e Menor Número de Eleitores
+    //TERCEIRA VERSÃO
     public void PMaiorMenorNumero(Votacao [] vot) throws IOException{
         Votacao aux[] = new Votacao[1];
         int i,j;
@@ -126,6 +127,7 @@ public class Votacao2024 {
         }
         JOptionPane.showMessageDialog(null, "Seção com mais votos: "+Integer.toString(vot[0].NumeroSecao)+"\n"
                 + "Seção com menos votos: "+Integer.toString(vot[9].NumeroSecao));
+        //SEGUNDA VERSÃO
         /*
         int Big = 0;
         int Low = 10*100000;
@@ -145,7 +147,7 @@ public class Votacao2024 {
                 + "Seção com menos votos: "+Integer.toString(aux[1].NumeroSecao));
         */
         
-        
+        //PRIMEIRA VERSÃO
         /*int optBigLow = Integer.parseInt(JOptionPane.showInputDialog("1 - Seção com mais Votos "
                                                                     + "\n2 - Seção com menos votos"));
         int Big = 0;
