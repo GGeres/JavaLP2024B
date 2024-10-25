@@ -84,7 +84,7 @@ public class Votacao2024 {
     
     //Procedimentos para a Opção 4 do Menu Principal
     //4.1 - Eleitores por Seção
-    int somaSecao[] = new int[200];
+    int somaSecao[] = new int[10];
     public void PEleitoresSecao(Votacao [] vot) throws IOException{
         int i,j;
         String fileName = "ArquivoVotos.txt";
@@ -94,20 +94,20 @@ public class Votacao2024 {
             vot[i].NumeroCandidato = Integer.parseInt(read.readLine());
         }
         
-        for(i = 0; i < 199; i++){
-            for(j = (i+1); j < 200; j++){
+        for(i = 0; i < 9; i++){
+            for(j = (i+1); j < 10; j++){
                 if(vot[i].NumeroSecao == vot[j].NumeroSecao){
                     somaSecao[i] = somaSecao[i] + 1;
                 }    
             }  
         }
-        for(i = 0; i < 200; i++){
+        for(i = 0; i < 10; i++){
             System.out.println("Na Secao "+(i+1)+" houveram "+somaSecao[i]+" eleitores.");
         }
     }
     //4.2 - Seção com Maior e Menor Número de Eleitores
     public void PMaiorMenorNumero(Votacao [] vot) throws IOException{
-        Votacao aux[] = new Votacao[1];
+        Votacao aux[] = new Votacao[2];
         int i;
         String fileName = "ArquivoVotos.txt";
         BufferedReader read = new BufferedReader(new FileReader(fileName));
@@ -115,13 +115,32 @@ public class Votacao2024 {
             vot[i].NumeroSecao = Integer.parseInt(read.readLine());
             vot[i].NumeroCandidato = Integer.parseInt(read.readLine());
         }
-        int optBigLow = Integer.parseInt(JOptionPane.showInputDialog("1 - Seção com mais Votos "
+        int Big = 0;
+        int Low = 10*100000;
+        for(i = 0; i < 10; i++){
+            if(somaSecao[i] > Big){
+                Big = somaSecao[i];
+                aux[0] = vot[i];
+            } 
+        }
+        for(i = 0; i < 10; i++){
+            if(somaSecao[i] < Low){
+                Low = somaSecao[i];
+                aux[1] = vot[i];
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Seção com mais votos: "+Integer.toString(aux[0].NumeroSecao)+"\n"
+                + "Seção com menos votos: "+Integer.toString(aux[1].NumeroSecao));
+        
+        
+        
+        /*int optBigLow = Integer.parseInt(JOptionPane.showInputDialog("1 - Seção com mais Votos "
                                                                     + "\n2 - Seção com menos votos"));
         int Big = 0;
         int Low = 10^1000;
         switch (optBigLow){
             case 1:
-                for(i = 0; i < 200; i++){
+                for(i = 0; i < 10; i++){
                     if(somaSecao[i] > Big){
                         Big = somaSecao[i];
                         aux[0] = vot[i];
@@ -130,7 +149,7 @@ public class Votacao2024 {
                 JOptionPane.showMessageDialog(null,"Seção "+Integer.toString(aux[0].NumeroSecao)); 
                 break;
             case 2:
-                for(i = 0; i < 200; i++){
+                for(i = 0; i < 10; i++){
                     if(somaSecao[i] < Low){
                         Low = somaSecao[i];
                         aux[0] = vot[i];
@@ -138,7 +157,7 @@ public class Votacao2024 {
                 }
                 JOptionPane.showMessageDialog(null, "Seção "+Integer.toString(aux[0].NumeroSecao));
                 break;
-        }               
+        }*/               
     }
     //4.3 - Quantidade de votos por candidato
    
