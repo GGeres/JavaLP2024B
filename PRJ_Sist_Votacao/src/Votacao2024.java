@@ -122,13 +122,17 @@ public class Votacao2024 {
                 Big = somaSecao[i];
                 aux[0] = vot[i];
             } 
+            
         }
+        JOptionPane.showMessageDialog(null, Integer.toString(aux[0].NumeroSecao));
         for(i = 0; i < 10; i++){
             if(somaSecao[i] < Low){
                 Low = somaSecao[i];
                 aux[1] = vot[i];
             }
+            
         }
+        JOptionPane.showMessageDialog(null, Integer.toString(aux[1].NumeroSecao));
         JOptionPane.showMessageDialog(null, "Seção com mais votos: "+Integer.toString(aux[0].NumeroSecao)+"\n"
                 + "Seção com menos votos: "+Integer.toString(aux[1].NumeroSecao));
         
