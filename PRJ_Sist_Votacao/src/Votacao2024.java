@@ -1,6 +1,9 @@
 import java.io.*;
 import javax.swing.*;
 import java.util.Random;
+
+//Classe de Métodos
+
 public class Votacao2024 {
     public Votacao [ ] CadastroVotacao(Votacao[] vot) throws IOException{
         int x;
