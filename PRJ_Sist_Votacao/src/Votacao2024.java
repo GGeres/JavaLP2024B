@@ -107,35 +107,43 @@ public class Votacao2024 {
     }
     //4.2 - Seção com Maior e Menor Número de Eleitores
     public void PMaiorMenorNumero(Votacao [] vot) throws IOException{
-        Votacao aux[] = new Votacao[2];
-        int i;
+        Votacao aux[] = new Votacao[1];
+        int i,j;
         String fileName = "ArquivoVotos.txt";
         BufferedReader read = new BufferedReader(new FileReader(fileName));
         for(i = 0; i < 200; i++){
             vot[i].NumeroSecao = Integer.parseInt(read.readLine());
             vot[i].NumeroCandidato = Integer.parseInt(read.readLine());
         }
+        for(i = 0; i < 9; i++){
+            for(j = (i + 1); j < 10; j++){
+                if(somaSecao[i] > somaSecao[j]){
+                    aux[0] = vot[i];
+                    vot[i] = vot[j];
+                    vot[j] = aux[0];
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Seção com mais votos: "+Integer.toString(vot[0].NumeroSecao)+"\n"
+                + "Seção com menos votos: "+Integer.toString(vot[9].NumeroSecao));
+        /*
         int Big = 0;
         int Low = 10*100000;
         for(i = 0; i < 10; i++){
             if(somaSecao[i] > Big){
                 Big = somaSecao[i];
                 aux[0] = vot[i];
-            } 
-            
+            }
         }
-        JOptionPane.showMessageDialog(null, Integer.toString(aux[0].NumeroSecao));
         for(i = 0; i < 10; i++){
             if(somaSecao[i] < Low){
                 Low = somaSecao[i];
                 aux[1] = vot[i];
             }
-            
         }
-        JOptionPane.showMessageDialog(null, Integer.toString(aux[1].NumeroSecao));
         JOptionPane.showMessageDialog(null, "Seção com mais votos: "+Integer.toString(aux[0].NumeroSecao)+"\n"
                 + "Seção com menos votos: "+Integer.toString(aux[1].NumeroSecao));
-        
+        */
         
         
         /*int optBigLow = Integer.parseInt(JOptionPane.showInputDialog("1 - Seção com mais Votos "
