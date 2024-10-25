@@ -83,7 +83,7 @@ public class Votacao2024 {
     
     
     //Procedimentos para a Opção 4 do Menu Principal
-    //4.1 Eleitores por Seção
+    //4.1 - Eleitores por Seção
     public void PEleitoresSecao(Votacao [] vot) throws IOException{
         int i,j;
         String fileName = "ArquivoVotos.txt";
@@ -103,6 +103,41 @@ public class Votacao2024 {
         for(i = 0; i < 200; i++){
             System.out.println("Na Secao "+(i+1)+" houveram "+somaSecao[i]+" eleitores.");
         }
+    }
+    //4.2 - Seção com Maior e Menor Número de Eleitores
+    public void PMaiorMenorNumero(Votacao [] vot) throws IOException{
+        Votacao aux[] = new Votacao[1];
+        int i;
+        String fileName = "ArquivoVotos.txt";
+        BufferedReader read = new BufferedReader(new FileReader(fileName));
+        for(i = 0; i < 200; i++){
+            vot[i].NumeroSecao = Integer.parseInt(read.readLine());
+            vot[i].NumeroCandidato = Integer.parseInt(read.readLine());
+        }
+        int optBigLow = Integer.parseInt(JOptionPane.showInputDialog("1 - Seção com mais Votos "
+                                                                    + "\n2 - Seção com menos votos"));
+        int Big = 0;
+        int Low = 10^100;
+        switch (optBigLow){
+            case 1:
+                for(i = 0; i < 200; i++){
+                    if(vot[i].NumeroSecao > Big){
+                        Big = vot[i].NumeroSecao;
+                        aux[0] = vot[i];
+                    }
+                    JOptionPane.showMessageDialog(null,"Seção "+Integer.toString(aux[0].NumeroSecao));        
+                    break;
+                }
+            case 2:
+                for(i = 0; i < 200; i++){
+                    if(vot[i].NumeroSecao < Low){
+                        Low = vot[i].NumeroSecao;
+                        aux[0] = vot[i];
+                    }
+                }
+                JOptionPane.showMessageDialog(null, "Seção "+Integer.toString(aux[0].NumeroSecao));
+                break;
+        }               
     }
     
     
