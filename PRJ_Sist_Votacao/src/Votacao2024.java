@@ -1,13 +1,7 @@
 import java.io.*;
 import javax.swing.*;
 import java.util.Random;
-
-//Classe de Métodos
-
 public class Votacao2024 {
-    
-    //Funções do Menu Principal
-    //1 - Carregar Seção/Número Eleitor
     public Votacao [ ] CadastroVotacao(Votacao[] vot) throws IOException{
         int x;
         //String fileName = "ArquivoVotos.txt";
@@ -41,7 +35,6 @@ public class Votacao2024 {
         return vot;   
     }
     
-    //2 - Classificar por Seção
     public Votacao [] ClassificaVot(Votacao []vot) throws IOException{
         int x, y;
         //String fileName = "ArquivoVotos.txt";
@@ -66,7 +59,6 @@ public class Votacao2024 {
         return vot;
     }
     
-    //3 - Gravar Registros
     public Votacao[] GravaVot(Votacao [] vot) throws IOException{
         String fileName = "ArquivoVotos.txt";
         BufferedWriter save = new BufferedWriter(new FileWriter(fileName));
@@ -81,10 +73,6 @@ public class Votacao2024 {
         return vot;
     }
     
-    
-    //Procedimentos para a Opção 4 do Menu Principal
-    //4.1 - Eleitores por Seção
-    int somaSecao[] = new int[10];
     public void PEleitoresSecao(Votacao [] vot) throws IOException{
         int i,j;
         String fileName = "ArquivoVotos.txt";
@@ -93,7 +81,7 @@ public class Votacao2024 {
             vot[i].NumeroSecao = Integer.parseInt(read.readLine());
             vot[i].NumeroCandidato = Integer.parseInt(read.readLine());
         }
-        
+        int somaSecao[] = new int[200];
         for(i = 0; i < 9; i++){
             for(j = (i+1); j < 10; j++){
                 if(vot[i].NumeroSecao == vot[j].NumeroSecao){
@@ -105,76 +93,92 @@ public class Votacao2024 {
             System.out.println("Na Secao "+(i+1)+" houveram "+somaSecao[i]+" eleitores.");
         }
     }
-    //4.2 - Seção com Maior e Menor Número de Eleitores
-    //TERCEIRA VERSÃO
-    public void PMaiorMenorNumero(Votacao [] vot) throws IOException{
-        Votacao aux[] = new Votacao[1];
-        int i,j;
+    public void PMaiorMenor(Votacao [] vot) throws IOException{
+        
+        // Utilizr a chamada do procedimento PEleitoresSeção
+        int aux, aux2;
+        int i,j,B,L;
         String fileName = "ArquivoVotos.txt";
         BufferedReader read = new BufferedReader(new FileReader(fileName));
         for(i = 0; i < 200; i++){
             vot[i].NumeroSecao = Integer.parseInt(read.readLine());
             vot[i].NumeroCandidato = Integer.parseInt(read.readLine());
         }
+        int somaSecao[] = new int[200];
+        for(i = 0; i < 9; i++){
+            for(j = (i+1); j < 10; j++){
+                if(vot[i].NumeroSecao == vot[j].NumeroSecao){
+                    somaSecao[i] = somaSecao[i] + 1;
+                }    
+            }  
+        }
+        int somaAux[] = new int[10];
+        for(i = 0; i < 10; i++){
+            somaAux[i] = i + 1;
+        }
         for(i = 0; i < 9; i++){
             for(j = (i + 1); j < 10; j++){
                 if(somaSecao[i] > somaSecao[j]){
-                    aux[0] = vot[i];
-                    vot[i] = vot[j];
-                    vot[j] = aux[0];
+                    aux = somaSecao[i];
+                    somaSecao[i] = somaSecao[j];
+                    somaSecao[j] = aux;
+                    aux2 = somaAux[i];
+                    somaAux[i] = somaAux[j];
+                    somaAux[j] = aux2;
                 }
             }
         }
-        JOptionPane.showMessageDialog(null, "Seção com mais votos: "+Integer.toString(vot[0].NumeroSecao)+"\n"
-                + "Seção com menos votos: "+Integer.toString(vot[9].NumeroSecao));
-        //SEGUNDA VERSÃO
-        /*
-        int Big = 0;
-        int Low = 10*100000;
-        for(i = 0; i < 10; i++){
-            if(somaSecao[i] > Big){
-                Big = somaSecao[i];
-                aux[0] = vot[i];
-            }
-        }
-        for(i = 0; i < 10; i++){
-            if(somaSecao[i] < Low){
-                Low = somaSecao[i];
-                aux[1] = vot[i];
-            }
-        }
-        JOptionPane.showMessageDialog(null, "Seção com mais votos: "+Integer.toString(aux[0].NumeroSecao)+"\n"
-                + "Seção com menos votos: "+Integer.toString(aux[1].NumeroSecao));
-        */
         
-        //PRIMEIRA VERSÃO
-        /*int optBigLow = Integer.parseInt(JOptionPane.showInputDialog("1 - Seção com mais Votos "
-                                                                    + "\n2 - Seção com menos votos"));
-        int Big = 0;
-        int Low = 10^1000;
-        switch (optBigLow){
-            case 1:
-                for(i = 0; i < 10; i++){
-                    if(somaSecao[i] > Big){
-                        Big = somaSecao[i];
-                        aux[0] = vot[i];
-                    } 
+        
+        
+        JOptionPane.showMessageDialog(null,"Seção com mais eleitores: Seção "+somaAux[9]);
+        JOptionPane.showMessageDialog(null,"Seção com menos eleitores: Seção "+somaAux[0]);
+        
+        
+     
+        /*int B = 0;
+        int L = 0;
+        for(i = 0; i < 10; i++){
+            if(i == 0){
+                B = somaSecao[i];
+                L = somaSecao[i];
+            }
+            if(somaSecao[i] > B){
+                aux = B;
+                B = vot[i].NumeroSecao;
+                vot[i].NumeroSecao = aux;
+            }
+            if(somaSecao[i] < L){
+                aux2 = L;
+                L = vot[i].NumeroSecao;
+                vot[i].NumeroSecao = aux2;
+            }
+        
+        }
+        JOptionPane.showMessageDialog(null,"Seção com mais eleitores: Seção "+B);
+        JOptionPane.showMessageDialog(null,"Seção com menos eleitores: Seção "+L);*/
+        /*
+        int B = 0;
+        int L = ;
+        for(i = 0; i < 10; i++){
+            /*if(i == 0){
+                B = somaSecao[i];
+                L = somaSecao[i];
+                //B = vot[i].NumeroSecao;
+                //L = vot[i].NumeroSecao;
+            }
+            if(i == 0){
+            B = vot[i].NumeroSecao;
+            L = vot[i].NumeroSecao;}
+            
+            if(somaSecao[i] > B){
+                    B = vot[i].NumeroSecao;
                 }
-                JOptionPane.showMessageDialog(null,"Seção "+Integer.toString(aux[0].NumeroSecao)); 
-                break;
-            case 2:
-                for(i = 0; i < 10; i++){
-                    if(somaSecao[i] < Low){
-                        Low = somaSecao[i];
-                        aux[0] = vot[i];
-                    }
-                }
-                JOptionPane.showMessageDialog(null, "Seção "+Integer.toString(aux[0].NumeroSecao));
-                break;
-        }*/               
+            else if(somaSecao[i] < L){
+                L = vot[i].NumeroSecao;
+            }
+        }*/
+  
     }
-    //4.3 - Quantidade de votos por candidato
-   
-    
     
 }
