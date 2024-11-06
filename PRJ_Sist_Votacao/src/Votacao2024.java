@@ -72,7 +72,7 @@ public class Votacao2024 {
         save.close();
         return vot;
     }
-    
+    //Quantidade de Eleitores por Seção
     public void PEleitoresSecao(Votacao [] vot) throws IOException{
         int i,j;
         String fileName = "ArquivoVotos.txt";
@@ -93,6 +93,7 @@ public class Votacao2024 {
             System.out.println("Na Secao "+(i+1)+" houveram "+somaSecao[i]+" eleitores.");
         }
     }
+    // Número de Seção com Maior e Menor Número de Eleitores
     public void PMaiorMenor(Votacao [] vot) throws IOException{
         
         // Utilizr a chamada do procedimento PEleitoresSeção
@@ -179,6 +180,20 @@ public class Votacao2024 {
             }
         }*/
   
+    }
+    //Quantidade de votos por candidato
+    public void PVotosCandidato (Votacao [] vot)throws IOException{
+        int i;
+        String fileName = "ArquivoVotos.txt";
+        BufferedReader read = new BufferedReader(new FileReader(fileName));
+        for(i = 0; i < 200; i++){
+            vot[i].NumeroSecao = Integer.parseInt(read.readLine());
+            vot[i].NumeroCandidato = Integer.parseInt(read.readLine());
+        }
+        
+        
+        
+        
     }
     
 }
