@@ -192,8 +192,8 @@ public class Votacao2024 {
         }
         int somaCandidato[] = new int[300];
         Votacao[] aux = new Votacao[1];
-        for(i = 0; i < 299; i++){
-            for(j = (i + 1); j < 300; j++){
+        for(i = 0; i < 199; i++){
+            for(j = (i + 1); j < 200; j++){
                 if(vot[i].NumeroCandidato > vot[j].NumeroCandidato){
                     aux[0] = vot[i];
                     vot[i] = vot[j];
@@ -204,12 +204,22 @@ public class Votacao2024 {
                 }
             }
         }
-        for(i = 0; i < 200; i++){
-            System.out.println("O candidato "+(vot[i].NumeroCandidato)+" teve "+somaCandidato[i]+" votos.");
+        for(i = 1; i <= 200; i++){
+            System.out.println("O candidato "+(i)+" teve "+somaCandidato[i]+" votos.");
         }
         
         
         
+    }
+    // Os 10 mais votados
+    public void PMaisVotados (Votacao [] vot) throws IOException{
+        int i,j;
+        String fileName = "ArquivoVotos.txt";
+        BufferedReader read = new BufferedReader(new FileReader(fileName));
+        for(i = 0; i < 200; i++){
+            vot[i].NumeroSecao = Integer.parseInt(read.readLine());
+            vot[i].NumeroCandidato = Integer.parseInt(read.readLine());
+        }
     }
     
 }
