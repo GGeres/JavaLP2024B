@@ -43,6 +43,9 @@ public class Sist_Vot_Main {
                             case 2:
                                 vot24.PMaiorMenor(vot);
                                 break;
+                            case 3: 
+                                vot24.PVotosCandidato(vot);
+                                break;
                         }
                     }
                     break;

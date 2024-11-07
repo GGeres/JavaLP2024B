@@ -183,14 +183,24 @@ public class Votacao2024 {
     }
     //Quantidade de votos por candidato
     public void PVotosCandidato (Votacao [] vot)throws IOException{
-        int i;
+        int i,j;
         String fileName = "ArquivoVotos.txt";
         BufferedReader read = new BufferedReader(new FileReader(fileName));
         for(i = 0; i < 200; i++){
             vot[i].NumeroSecao = Integer.parseInt(read.readLine());
             vot[i].NumeroCandidato = Integer.parseInt(read.readLine());
         }
-        
+        int somaCandidato[] = new int[200];
+        for(i = 0; i < 299; i++){
+            for(j = (i + 1); j < 300; j++){
+                if(vot[i].NumeroCandidato == vot[j].NumeroCandidato){
+                    somaCandidato[i] = somaCandidato[i] + 1;
+                }
+            }
+        }
+        for(i = 0; i < 300; i++){
+            System.out.println("O candidato "+(vot[i].NumeroCandidato)+" teve "+somaCandidato[i]+" votos.");
+        }
         
         
         
