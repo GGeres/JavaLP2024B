@@ -190,15 +190,21 @@ public class Votacao2024 {
             vot[i].NumeroSecao = Integer.parseInt(read.readLine());
             vot[i].NumeroCandidato = Integer.parseInt(read.readLine());
         }
-        int somaCandidato[] = new int[200];
+        int somaCandidato[] = new int[300];
+        Votacao[] aux = new Votacao[1];
         for(i = 0; i < 299; i++){
             for(j = (i + 1); j < 300; j++){
+                if(vot[i].NumeroCandidato > vot[j].NumeroCandidato){
+                    aux[0] = vot[i];
+                    vot[i] = vot[j];
+                    vot[j] = aux[0];
+                }
                 if(vot[i].NumeroCandidato == vot[j].NumeroCandidato){
                     somaCandidato[i] = somaCandidato[i] + 1;
                 }
             }
         }
-        for(i = 0; i < 300; i++){
+        for(i = 0; i < 200; i++){
             System.out.println("O candidato "+(vot[i].NumeroCandidato)+" teve "+somaCandidato[i]+" votos.");
         }
         
