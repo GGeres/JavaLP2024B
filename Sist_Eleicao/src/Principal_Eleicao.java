@@ -10,7 +10,8 @@ import javax.swing.JOptionPane;
  */
 public class Principal_Eleicao {
     public static void main(String[] args) throws IOException{
-        Eleitor[] elect = new Eleitor[10];
+        Eleitor[] elect = new Eleitor[5];
+        Votacao[] vot = new Votacao[10];
         Eleicao_Methods meth = new Eleicao_Methods();
         int opc = 0;
         while(opc != 9){
@@ -20,6 +21,9 @@ public class Principal_Eleicao {
             switch(opc){
                 case 1: 
                     elect = meth.CadastroEleitor(elect);
+                    break;
+                case 2:
+                    vot = meth.CadastraVot(vot, elect);
                     break;
             }
         }
