@@ -11,6 +11,7 @@ public class Eleicao_Methods {
             elect[y] = new Eleitor();
         }
         x = 0;
+        y = 0;
         while(x < 5){
             elect[x].NumEleitor = Integer.parseInt(JOptionPane.showInputDialog("Digite seu Número de Eleitor"));
             elect[x].NomeEleitor = JOptionPane.showInputDialog("Digite seu nome");
@@ -20,8 +21,9 @@ public class Eleicao_Methods {
                 if(elect[x].NumSecao > 4){
                     elect[y] = elect[x];
                     y++;
+                }else{
+                    x++;
                 }
-                x++;
             } else{
                 JOptionPane.showMessageDialog(null, "Dados Errados! Digite um número de seção válido");
             }
@@ -34,7 +36,7 @@ public class Eleicao_Methods {
         for(x = 0; x < 5; x++){
             vot[x] = new Votacao();
         }
-        for(y = 0; y < 5; y++){
+        for(y = (x - 5); y < 5; y++){
             vot[y] = new Votacao();
         }
         while(opt != 9){
@@ -48,13 +50,29 @@ public class Eleicao_Methods {
                     }
                     break;
                 case 2:
-                    for(y = 0; y < 5; y++){
+                    for(y = (x - 5); y < 5; y++){
                         vot[y].Section = elect[y].NumSecao;
                         vot[y].CodCandidato = Integer.parseInt(JOptionPane.showInputDialog("1 - José\n2 - Maria\n3 - Branco\n4 - Nulo"));
                         vot[y].NEleitor = elect[y].NumEleitor;
                     }
                     break;
             }
+        }
+        return vot;
+    }
+    public Votacao [ ] AgrupaApuracao(Votacao [ ] vot) throws IOException{
+        int x = 0, y = 0, z;
+        for(z = 0; z < 10; z++){
+            vot[z] = new Votacao();
+        }
+        String fileName = "ArquivoEleicao.txt";
+        BufferedWriter save = new BufferedWriter(new FileWriter(fileName));
+        for(z = 0; z < 10; z++){
+            vot[z] = vot[x];
+            vot[z + 5] = vot[y];
+        }
+        for(z = 0; z < 10; z++){
+            System.out.println(vot[z].Section);
         }
         return vot;
     }
